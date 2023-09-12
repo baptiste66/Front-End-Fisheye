@@ -7,7 +7,7 @@ function photographerTemplate(data) {
         const article = document.createElement( 'article' );
 
         const link = document.createElement('a');
-        link.setAttribute("href", `photographer.html?id=${id}`);
+        link.setAttribute("href", `photographer.html?id=${id}&name=${name}`);
         link.setAttribute("alt", name);
 
         const location =document.createElement('span')

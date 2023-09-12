@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -17,23 +18,38 @@
       <div class="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
+      <div class="content">
+      </div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" alt="bouton fermer" onclick="closeModal()" />
         </header>
 				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
+          <div>
+            <label for="first-name">Prénom</label>
+            <input id="first-name" aria-label="Prénom" />
+        </div>
+          <div>
+            <label for="first-name">Nom</label>
+            <input id="first-name" aria-label="Nom" />
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input id="email" aria-label="Email" />
+        </div>
+        <div>
+            <label for="message">Votre Message</label>
+            <textarea id="message" aria-label="Votre Message"></textarea>
+        </div>
+        <button class="contact_button" aria-label="Envoyer">Envoyer</button>
 				</form>
 			</div>
 		</div>
     <script src="/scripts/pages/photographer.js"></script>
+    <script src="/scripts/templates/photographer-information.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>
