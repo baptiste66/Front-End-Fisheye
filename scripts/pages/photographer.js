@@ -57,27 +57,33 @@ const getSamplePhotos = async () => {
     }
 };
 
+
 async function displaycontent(medias) {
-   
-    const photographHeader = document.querySelector(".content");
-    const photographerModel = mediaTemplate(medias);
-    const userCardDOM = photographerModel.getContentDOM();
-    photographHeader.appendChild(userCardDOM);
-   
+    const photographHeader = document.querySelector(".photographe-main");
+    
+    // Effacer le contenu existant
+    photographHeader.innerHTML = '';
+
+    for (const media of medias) {
+        const photographerModel = mediaTemplate(media);
+        const mediaDOM = photographerModel.getContentDOM();
+        photographHeader.appendChild(mediaDOM);
+    }
 }
 
+
 async function inits() {
-    // Récupère les datas des photographes
+    // Récupère les données des médias
     const { media } = await getSamplePhotos();
     
-    // Filtrer le photographe en fonction de l'ID
-    const medias = media.find((c) => c.photographerId.toString() === id);
+    // Filtrer les médias en fonction de l'ID du photographe
+    const medias = media.filter((c) => c.photographerId.toString() === id);
 
-    if (medias) {
+    if (medias.length > 0) {
         displaycontent(medias);
         console.log(medias);
     } else {
-        console.error(`Aucun contenue pour ce photographe ${id}`);
+        console.error(`Aucun contenu pour ce photographe ${id}`);
     }
 }
 

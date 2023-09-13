@@ -16,6 +16,7 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    justify-content: space-around;
 }
 
 .contact_button {
@@ -29,6 +30,8 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+    position: absolute;
+   top: 160px;
 }
 
 .modal { 
@@ -86,10 +89,99 @@ form input {
     border: none;
     border-radius: 5px;
 }
+.contact_button_submit{
+    font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901C1C;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .photographePicture{
     height: 200px;
     width: 200px;
     display: inline;
     object-fit: cover;
     border-radius: 100%;
+    position: absolute;
+    top: 100px;
+    right: 140px;
+    
+}
+.photographe-main{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.photographe-main img{
+    width: 370px;
+    height: 351px;
+}
+.information{
+    position: absolute;
+    left: 140px;
+}
+.information h1{
+    color: #D3573C;
+    font-size: 36px;
+    margin-bottom: 0;
+}
+.location p{
+    margin-bottom: 0;
+}
+.information p{
+    gap: 0px;
+}
+.template_content h2{
+    color:#901C1C;
+    margin-top: 10px;
+}
+.template_content p{
+    text-align: center;
+    margin-top: 10px;
+    margin-left: auto;
+}
+.template_content .fa-heart {
+    color:#901C1C;
+}
+.photographe-main_picture_description{
+display: flex;
+align-items: center;
+}
+.template_content i{
+    margin-left: 5px;
+}
+.price {
+    position:fixed;
+    z-index: 5;
+    background-color:#DB8876 ;
+    bottom: 0;
+    right: 50px;
+    margin: 0;
+}
+
+
+
+.sort-container{
+    display: flex;
+    margin-left: 100px;
+    margin-bottom: 50px;
+}
+.sort-container select{
+    background-color: #901C1C;
+    margin-left: 20px;
+}
+
+#sort-select {
+    color: white; 
+    border-radius: 5px;
+    width: 120px;
+    height: 69px;
+    font-size: 16px;
 }

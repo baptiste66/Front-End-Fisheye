@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <title>Fisheye - photographe </title>
   </head>
   <body>
@@ -18,13 +20,21 @@
       <div class="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
-      <div class="content">
+      <div class="sort-container">
+        <p>Triez par:</p>
+        <select id="sort-select">
+            <option value="popularite" data-icon="dropdown-open.svg"style="display: none";>Popularité</option>
+            <option value="date">Date</option>
+            <option value="titre">Titre</option>
+        </select>
+    </div>    
+      <div class="photographe-main">
       </div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
+          <h2>Contactez-moi </h2>
           <img src="assets/icons/close.svg" alt="bouton fermer" onclick="closeModal()" />
         </header>
 				<form>
@@ -44,12 +54,13 @@
             <label for="message">Votre Message</label>
             <textarea id="message" aria-label="Votre Message"></textarea>
         </div>
-        <button class="contact_button" aria-label="Envoyer">Envoyer</button>
+        <button class="contact_button_submit" aria-label="Envoyer">Envoyer</button>
 				</form>
 			</div>
 		</div>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/templates/photographer-information.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/sort.js"></script>
   </body>
 </html>

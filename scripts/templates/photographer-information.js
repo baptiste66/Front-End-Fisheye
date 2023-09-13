@@ -1,48 +1,61 @@
 let photographName =params.get("name");
 
+
 function photographerTemplate(data) {
     const { name, portrait, country, city, price, tagline } = data;
-   
+
+   const contactModal = document.getElementById('contact_modal');
+   const modalTitle = contactModal.querySelector('h2');
+   modalTitle.textContent = `Contactez-moi ${name}`;
+
     const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
         const article = document.createElement('article');
+
+        const information = document.createElement('div')
+        information.setAttribute('class', 'information')
+
         const location = document.createElement('span');
         location.setAttribute('class', 'location');
 
-        const img = document.createElement('img');
+
+        let img = document.createElement('img');
         img.setAttribute('src', picture);
         img.setAttribute('alt', name); 
         img.setAttribute('class', 'photographePicture')
 
-        const h2 = document.createElement('h2');
-        h2.textContent = name;
+        let h1 = document.createElement('h1');
+        h1.textContent = name;
 
-        const countryParagraph = document.createElement('p');
-        countryParagraph.textContent = country + ', '; 
-        countryParagraph.setAttribute('aria-label', `Country: ${country}`);
+        let countryParagraph = document.createElement('p');
+        countryParagraph.textContent = country ; 
+        countryParagraph.setAttribute('aria-label', `pays: ${country}`);
 
-        const cityParagraph = document.createElement('p');
+        let cityParagraph = document.createElement('p');
         cityParagraph.textContent = city + ', ';
-        cityParagraph.setAttribute('aria-label', `City: ${city}`);
+        cityParagraph.setAttribute('aria-label', `ville: ${city}`);
 
-        const priceParagraph = document.createElement('p');
+        let priceParagraph = document.createElement('p');
         priceParagraph.textContent = price + '€/jour';
         priceParagraph.setAttribute('class', 'price');
-        priceParagraph.setAttribute('aria-label', `Price: ${price} per day`);
+        priceParagraph.setAttribute('aria-label', `Prix: ${price} par jour`);
 
-        const taglineParagraph = document.createElement('p');
+        let taglineParagraph = document.createElement('p');
         taglineParagraph.textContent = tagline;
         taglineParagraph.setAttribute('aria-label', `Tagline: ${tagline}`);
 
-        location.appendChild(countryParagraph);
         location.appendChild(cityParagraph);
+        location.appendChild(countryParagraph);
+        
+        information.appendChild(h1)
+        information.appendChild(location);
+        information.appendChild(taglineParagraph);
+        article.appendChild(priceParagraph);
 
         article.appendChild(img);
-        article.appendChild(h2);
-        article.appendChild(location);
-        article.appendChild(taglineParagraph);
-        article.appendChild(priceParagraph);
+        article.appendChild(information);
+       
         return article;
     }
     return { name, picture, getUserCardDOM };
@@ -51,25 +64,32 @@ function photographerTemplate(data) {
 
 
 function mediaTemplate(dataContent) {
-    const { image, title, likes } = dataContent;
-    const pictureContent = `Sample Photos/${name}/${image}`;
-console.log(pictureContent)
+    let { image, title, likes } = dataContent;
+    let pictureContent = `Sample Photos/${photographName}/${image}`;
+   
+
     function getContentDOM() {
         const article = document.createElement('article');
+        article.setAttribute('class', 'template_content')
 
-        const img = document.createElement('img');
+        const description = document.createElement('span');
+        description.setAttribute('class', 'photographe-main_picture_description') 
+
+        let img = document.createElement('img');
         img.setAttribute('src', pictureContent);
-        img.setAttribute('class', 'photographePicture');
+        img.setAttribute('class', 'photographe-main_picture');
 
-        const h1 = document.createElement('h1');
-        h1.textContent = title;
+        let h2 = document.createElement('h2');
+        h2.textContent = title;
 
-        const likesContent = document.createElement('p');
-        likesContent.textContent = likes;
+        let likesContent = document.createElement('p');
+        likesContent.innerHTML = `${likes} <i class="fas fa-heart"></i>`;
 
         article.appendChild(img);
-        article.appendChild(h1);
-        article.appendChild(likesContent);
+        article.appendChild(description)
+        
+        description.appendChild(h2);
+        description.appendChild(likesContent);
 
         return article;
     }
