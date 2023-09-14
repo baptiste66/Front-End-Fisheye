@@ -38,7 +38,7 @@ function photographerTemplate(data) {
 
         let priceParagraph = document.createElement('p');
         priceParagraph.textContent = price + '€/jour';
-        priceParagraph.setAttribute('class', 'photographer-price');
+        priceParagraph.setAttribute('class', 'photographer-price card-bottom');
         priceParagraph.setAttribute('aria-label', `Prix: ${price} par jour`);
 
         let taglineParagraph = document.createElement('p');
@@ -70,7 +70,7 @@ function mediaTemplate(dataContent) {
     let pictureContent = `Sample Photos/${photographName}/${image}`;
     let likesNumber = parseInt(likes);
 
-    totalLikes += likesNumber; // Ajoutez les likes de cet élément au total
+    totalLikes += likesNumber; 
 
     function getContentDOM() {
         const article = document.createElement('article');
@@ -104,10 +104,10 @@ function mediaTemplate(dataContent) {
             article.appendChild(img);
         }
 
-        // Créez un bouton pour le like/unlike
+        
         const likeButton = document.createElement('button');
         likeButton.innerHTML = '<i class="fas fa-heart"></i>';
-        likeButton.className = likedImages.has(image) ? 'liked' : ''; // Applique la classe 'liked' si l'image est déjà likée
+        likeButton.className = likedImages.has(image) ? 'liked' : ''; 
 
         likeButton.addEventListener('click', () => {
             if (!likedImages.has(image)) {
@@ -127,7 +127,7 @@ function mediaTemplate(dataContent) {
             }
         });
 
-        // Ajoutez le bouton like/unlike à l'article
+       
         article.appendChild(likeButton);
 
         article.appendChild(description);
@@ -140,7 +140,7 @@ function mediaTemplate(dataContent) {
 
     if (!totalLikesElement) {
         totalLikesElement = document.createElement('p');
-        totalLikesElement.setAttribute('class', 'photographer-TotalLikes');
+        totalLikesElement.setAttribute('class', 'photographer-TotalLikes card-bottom');
         document.querySelector(".photograph-header").appendChild(totalLikesElement);
     }
 

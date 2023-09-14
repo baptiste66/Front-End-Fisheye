@@ -171,24 +171,16 @@ align-items: center;
 .template_content i{
     margin-left: 5px;
 }
-.photographer-price{
+
+.card-bottom{
     position:fixed;
     z-index: 5;
     background-color:#DB8876 ;
-    bottom: 0;
-    right: 50px;
-    margin: 0;
+    margin-right: 82px;
+    padding-right: 20px;
+    padding-left: 10px;
 }
-.photographer-TotalLikes{
-    position:fixed;
-    z-index: 5;
-    background-color:#DB8876 ;
-    bottom: 0;
-    right: 127px;
-    padding-right: 30px;
-    padding-left: 15px;
-    margin: 0;
-}
+
 
 
 
