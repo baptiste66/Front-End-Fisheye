@@ -20,14 +20,16 @@
       <div class="photograph-header">
         <button  class="contact_button" alt="“Contact Me”"  onclick="displayModal()">Contactez-moi</button>
       </div>
-      <div class="sort-container">
+
+      <div class="custom-select">
         <p>Triez par:</p>
-        <select id="sort-select">
-            <option value="popularite" data-icon="dropdown-open.svg"style="display: none";>Popularité</option>
-            <option value="date">Date</option>
-            <option value="titre">Titre</option>
-        </select>
-    </div>    
+        <ul class="filter">
+          <li class="selected" >Popularité</li>
+          <li  class="with-border">Date</li>
+          <li  class="with-border">Titre</li>
+        </ul>
+        <i class="fas fa-solid fa-chevron-up"></i>
+      </div>
       <div class="photographe-main">
       </div>
     </main>
@@ -61,6 +63,6 @@
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/templates/photographer-information.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
-    <script src="/scripts/utils/sort.js"></script>
+    <script src="/scripts/utils/filter.js"></script>
   </body>
 </html>

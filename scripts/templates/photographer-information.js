@@ -39,7 +39,7 @@ function photographerTemplate(data) {
 
         let priceParagraph = document.createElement('p');
         priceParagraph.textContent = price + '€/jour';
-        priceParagraph.setAttribute('class', 'photographer-price card-bottom');
+        priceParagraph.setAttribute('class', 'photographer-price ');
         priceParagraph.setAttribute('aria-label', `Prix: ${price} par jour`);
 
         let taglineParagraph = document.createElement('p');
@@ -152,8 +152,8 @@ function mediaTemplate(dataContent) {
 
     if (!totalLikesElement) {
         totalLikesElement = document.createElement('p');
-        totalLikesElement.setAttribute('class', 'photographer-TotalLikes card-bottom');
-        document.querySelector(".photograph-header").appendChild(totalLikesElement);
+        totalLikesElement.setAttribute('class', 'photographer-TotalLikes');
+        document.querySelector("aside").appendChild(totalLikesElement);
     }
 
     totalLikesElement.innerHTML = `${totalLikes} <i class="fas fa-heart"></i>`;
