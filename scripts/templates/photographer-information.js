@@ -12,6 +12,7 @@ function photographerTemplate(data) {
 
     function getUserCardDOM() {
         const article = document.createElement('article');
+        const aside = document.createElement('aside')
 
         const information = document.createElement('div')
         information.setAttribute('class', 'information')
@@ -51,8 +52,10 @@ function photographerTemplate(data) {
         information.appendChild(h1)
         information.appendChild(location);
         information.appendChild(taglineParagraph);
-        article.appendChild(priceParagraph);
 
+        aside.appendChild(priceParagraph);
+
+        article.appendChild(aside)
         article.appendChild(img);
         article.appendChild(information);
        
@@ -60,6 +63,7 @@ function photographerTemplate(data) {
     }
     return { name, picture, getUserCardDOM };
 }
+
 
 let totalLikes = 0;
 let totalLikesElement;
@@ -69,15 +73,20 @@ function mediaTemplate(dataContent) {
     let { image, title, likes, video } = dataContent;
     let pictureContent = `Sample Photos/${photographName}/${image}`;
     let likesNumber = parseInt(likes);
-
+    
     totalLikes += likesNumber; 
 
     function getContentDOM() {
         const article = document.createElement('article');
         article.setAttribute('class', 'template_content');
 
+        const aside = document.createElement('aside')
+
         const description = document.createElement('span');
         description.setAttribute('class', 'photographe-main_picture_description');
+
+        const like_content =document.createElement('span')
+        like_content.setAttribute('class','like_content')
 
         let h2 = document.createElement('h2');
         h2.textContent = title;
@@ -105,9 +114,11 @@ function mediaTemplate(dataContent) {
         }
 
         
-        const likeButton = document.createElement('button');
+        
+        const likeButton=document.createElement('button')
         likeButton.innerHTML = '<i class="fas fa-heart"></i>';
-        likeButton.className = likedImages.has(image) ? 'liked' : ''; 
+        likeButton.className = likedImages.has(image) ? 'liked' : '';
+        likeButton.setAttribute('class', 'btn_like'); 
 
         likeButton.addEventListener('click', () => {
             if (!likedImages.has(image)) {
@@ -126,15 +137,16 @@ function mediaTemplate(dataContent) {
                 likeButton.classList.remove('liked');
             }
         });
-
-       
-        article.appendChild(likeButton);
+        
 
         article.appendChild(description);
-
+        article.appendChild(aside)    
+        
         description.appendChild(h2);
-        description.appendChild(likesContent);
+        description.appendChild(like_content)
 
+        like_content.appendChild(likesContent);
+        like_content.appendChild(likeButton);
         return article;
     }
 
