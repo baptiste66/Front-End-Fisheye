@@ -2,6 +2,9 @@ main{
     margin-left: 100px;
     margin-right: 100px;
 }
+button{
+  border: none;
+}
 #contact_modal {
     display: none;
     z-index: 10;
@@ -15,6 +18,7 @@ main{
     height: 100vh;
     background-color: rgba(0,0,0,0.5);
 }
+
 li{
     list-style-type: none;
 }
@@ -133,7 +137,7 @@ form textarea{
 
 
 
-.photographe-main {
+.photographe-main {position: relative;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -142,7 +146,7 @@ form textarea{
   .template_content {
     max-width: 370px;
     flex: 1; 
-    margin-bottom: 20px; 
+    margin-bottom: 0px; 
     margin-right: 20px;
   }
 
@@ -150,10 +154,19 @@ form textarea{
 .photographe-main img{
     width: 370px;
     height: 351px;
+    will-change: contents;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px;
 }
+
 .photographe-main_video{
-    width: 370px;
-    height: 351px;
+  width: 370px;
+  height: 351px;
+    will-change: contents;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px;
 }
 .information{
     position: absolute;
@@ -173,6 +186,7 @@ form textarea{
 .template_content h2{
     color:#901C1C;
     margin-top: 10px;
+    margin-bottom: 50px;
 }
 .template_content p{
     text-align: center;
@@ -181,6 +195,7 @@ form textarea{
 }
 .template_content .fa-heart {
     color:#901C1C;
+   
 }
 .photographe-main_picture_description{
 display: flex;
@@ -240,41 +255,73 @@ justify-content: space-between;
     align-items: center;
     text-align: center;
     justify-content: left;
+    z-index: 5;
   }
-  ul .filter{
-    border-radius: 5px;
+  .dropdown_content{
+    margin: 0;
+    margin-bottom: -88px;
+    padding: 0;
   }
-  .custom-select ul {
+  .dropdown_content li::before {
+    content: "";
+    position: absolute;
+    top: 137px;
+    left: 35%;
+    transform: translateX(-50%);
+    width: 27%;
+    height: 1px;
+    background-color: white}
+
+    .dropdown_content li::after {
+      content: "";
+      position: absolute;
+      top: 68px;
+      left: 35%;
+      transform: translateX(-50%);
+      width: 27%;
+      height: 1px;
+      background-color: white}
+
+  .custom-select filter {
     list-style: none;
     padding: 0;
     margin: 0;
     background-image: none; 
-    color: white; 
-    height: 69px;
-    width: 160px;
-    font-size: 16px;
   }
-  
-  .custom-select li {
+ 
+  .custom-select button {color: white; 
+    font-size: 16px;
     padding-top: 10px;
     padding-bottom: 10px;
-    border-top: 1px solid transparent;
     cursor: pointer;
     justify-content: space-between;
     align-items: center;
     background-color: #901C1C;
-    border-top: 1px solid #ccc;
+    width: 170px;
+    height: 69px;
+    margin-left: 90px;
+  }
+  .custom-select p{
+    position:absolute;
+    left: 0;
+    top: 23px;
+  }
+  .btn_drop{
+    border-radius: 5px;
   }
   
-  
-  .custom-select i {margin-left: -24px;
-                    margin-top: -30px;
+  .fa-chevron-down{
+    margin-left: 10px;
+  }
+  .custom-select .fa-solid.fa-chevron-down{
     transition: transform 0.2s ease-in-out;
+    transform: rotate(0deg);
   }
   
-  .custom-select i.rotate {
+  .custom-select .fa-solid.fa-chevron-down.rotate {
     transform: rotate(180deg);
-  }
+    transition: transform 0.2s ease-in-out;
+}
   .custom-select p {
     margin: 0;
     margin-right: 20px;

@@ -4,9 +4,7 @@ let id = params.get("id");
 
 const getPhotographers = async () => {
     try {
-        
         const response = await fetch('./data/photographers.json'); 
-        
         const photographersData = await response.json();
         return photographersData;
     } catch (error) {
@@ -15,7 +13,7 @@ const getPhotographers = async () => {
     }
 };
 
-
+// for photographer's information header
 async function displayData(photographer) {
     const photographHeader = document.querySelector(".photograph-header");
     const photographerModel = photographerTemplate(photographer);
@@ -23,46 +21,52 @@ async function displayData(photographer) {
     photographHeader.appendChild(userCardDOM);
 }
 
-async function init() {
-    
-    const { photographers } = await getPhotographers();
-    
-    const photographer = photographers.find((p) => p.id.toString() === id);
 
+
+// for main content 
+
+async function displaycontentVisualAndDescription(medias, photographName) {
+    const photographMain = document.querySelector(".photographe-main");
+    
+    for (const media of medias) {
+        const photographerWorkVisual = mediaTemplateVisual(media, photographName);
+        const photographerWorkDescription = mediaTemplateDescription(media, photographName);
+
+        const visualDOM = photographerWorkVisual.getContentDOM();
+        const descriptionDOM = photographerWorkDescription.getContentDOM();
+
+        const mediaContainer = document.createElement('div');
+        mediaContainer.classList.add('media-container');
+
+        mediaContainer.appendChild(visualDOM);
+        mediaContainer.appendChild(descriptionDOM);
+
+        photographMain.appendChild(mediaContainer);
+    }
+}
+
+
+
+
+async function init() {
+    let photographName = params.get("name");
+
+
+    const { photographers, media } = await getPhotographers();
+    const photographer = photographers.find((p) => p.id.toString() === id);
     if (photographer) {
         displayData(photographer);
-        
     } else {
         console.error(`Aucun photographe trouvé avec l'ID ${id}`);
     }
-}
-init();
 
+    const mediasForPhotographer = media.filter((c) => c.photographerId.toString() === id);
 
-async function displaycontent(medias) {
-    const photographHeader = document.querySelector(".photographe-main");
-    
-    photographHeader.innerHTML = '';
-
-    for (const media of medias) {
-        const photographerModel = mediaTemplate(media);
-
-        const mediaDOM = photographerModel.getContentDOM();
-        photographHeader.appendChild(mediaDOM);
-    }
-}
-
-async function inits() {
-    // Récupère les données des médias
-    const { media } = await getPhotographers();
-    
-    const medias = media.filter((c) => c.photographerId.toString() === id);
-
-    if (medias.length > 0) {
-        displaycontent(medias);
+    if (mediasForPhotographer.length > 0) {
+        displaycontentVisualAndDescription(mediasForPhotographer, photographName);
+        
     } else {
-        console.error(`Aucun contenu pour ce photographe ${id}`);
-    }
+        console.error(`Aucun contenu visuel pour ce photographe ${id}`);
+    } sortByLikes()
 }
-
-inits();
+init()

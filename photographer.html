@@ -22,15 +22,29 @@
       </div>
 
       <div class="custom-select">
-        <p>Triez par:</p>
-        <ul class="filter">
-          <li class="selected" >Popularité</li>
-          <li  class="with-border">Date</li>
-          <li  class="with-border">Titre</li>
-        </ul>
-        <i class="fas fa-solid fa-chevron-down"></i>
-      </div>
-      
+        <p>Triez par :</p>
+        <div class="filter"> 
+        <div class="dropdown">
+            <button class="btn_drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter-options" aria-label="Sort by">
+                <span id="current_filter">Popularité</span>
+                <span class="fa-solid fa-chevron-down" aria-hidden="true"></span>
+            </button>
+            <ul class="dropdown_content" aria-hidden="true">
+                <li role="option">
+                    <button type="button" tabindex="-1" aria-label="Sort by title" data-sort="Titre">Titre</button>
+                </li>
+                <li role="option">
+                    <button type="button" tabindex="-1" aria-label="Sort by date" data-sort="Date">Date</button>
+                </li>
+                <li role="option">
+                    <button type="button" tabindex="-1" aria-label="Sort by popularity" data-sort="Popularité">Popularité</button>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </div>
+    
+
       <div class="photographe-main">
       </div>
     </main>

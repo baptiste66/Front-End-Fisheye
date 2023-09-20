@@ -64,21 +64,52 @@ function photographerTemplate(data) {
     return { name, picture, getUserCardDOM };
 }
 
+let currentIndex = 0;
+function mediaTemplateVisual(dataContent) {
+    let { image, video } = dataContent;
+    let pictureContent = `../Sample Photos/${photographName}/${image}`;
+
+    function getContentDOM() {
+        
+        if (video) {
+            const videoElement = document.createElement('video');
+            videoElement.setAttribute('class', 'photographe-main_video');
+            videoElement.setAttribute('controls','controls')
+
+            const source = document.createElement('source');
+            source.setAttribute('src', `../Sample Photos/${photographName}/${video}`);
+            source.setAttribute('type', 'video/mp4');
+
+            videoElement.appendChild(source);
+            
+            return videoElement;
+        } else {
+            let img = document.createElement('img');
+            img.setAttribute('src', pictureContent);
+            img.setAttribute('class', 'photographe-main_picture');
+            
+            return img;
+        }
+    }
+    return { getContentDOM };
+}
+
+
 
 let totalLikes = 0;
 let totalLikesElement;
 const likedImages = new Set();
 
-function mediaTemplate(dataContent) {
-    let { image, title, likes, video } = dataContent;
-    let pictureContent = `Sample Photos/${photographName}/${image}`;
+function mediaTemplateDescription(dataContent, image) {
+    let { title, likes, date } = dataContent;
     let likesNumber = parseInt(likes);
-    
+
     totalLikes += likesNumber; 
 
     function getContentDOM() {
         const article = document.createElement('article');
         article.setAttribute('class', 'template_content');
+        article.setAttribute('data-media-date',date);
 
         const aside = document.createElement('aside')
 
@@ -94,40 +125,18 @@ function mediaTemplate(dataContent) {
         let likesContent = document.createElement('p');
         likesContent.innerHTML = `${likesNumber} `;
         likesContent.setAttribute('aria-label', `likes`);
-
-        if (video) {
-            const videoElement = document.createElement('video');
-            videoElement.setAttribute('class', 'photographe-main_video');
-            videoElement.setAttribute('controls', 'controls');
-
-            const source = document.createElement('source');
-            source.setAttribute('src', `Sample Photos/${photographName}/${video}`);
-            source.setAttribute('type', 'video/mp4');
-
-            videoElement.appendChild(source);
-            article.appendChild(videoElement);
-        } else {
-            let img = document.createElement('img');
-            img.setAttribute('src', pictureContent);
-            img.setAttribute('class', 'photographe-main_picture');
-            article.appendChild(img);
-        }
-
-        
-        
         const likeButton=document.createElement('button')
         likeButton.innerHTML = '<i class="fas fa-heart"></i>';
-        likeButton.className = likedImages.has(image) ? 'liked' : '';
-        likeButton.setAttribute('class', 'btn_like'); 
 
         likeButton.addEventListener('click', () => {
-            if (!likedImages.has(image)) {
+            if (!likeButton.classList.contains('liked')) {
                 likedImages.add(image);
                 likesNumber += 1;
                 likesContent.innerHTML = `${likesNumber} `;
                 totalLikes += 1;
                 totalLikesElement.innerHTML = `${totalLikes} <i class="fas fa-heart"></i>`;
                 likeButton.classList.add('liked');
+                
             } else {
                 likedImages.delete(image);
                 likesNumber -= 1;
@@ -136,9 +145,8 @@ function mediaTemplate(dataContent) {
                 totalLikesElement.innerHTML = `${totalLikes} <i class="fas fa-heart"></i>`;
                 likeButton.classList.remove('liked');
             }
+            sortAndDisplayMediaByLikes();
         });
-        
-
         article.appendChild(description);
         article.appendChild(aside)    
         
@@ -159,7 +167,5 @@ function mediaTemplate(dataContent) {
     totalLikesElement.innerHTML = `${totalLikes} <i class="fas fa-heart"></i>`;
 
     return { getContentDOM };
+
 }
-
-
-
