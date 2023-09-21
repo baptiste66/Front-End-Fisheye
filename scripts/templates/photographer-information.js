@@ -65,46 +65,6 @@ function photographerTemplate(data) {
 }
 
 
-function mediaTemplateVisual(dataContent, photographName) {
-    let { image, video } = dataContent;
-    let pictureContent = `../Sample Photos/${photographName}/${image}`;
-
-    function getContentDOM() {
-        const linkElement = document.createElement('a');
-        linkElement.setAttribute('href', '#');
-        linkElement.setAttribute('data-target', 'lightbox-container');
-        linkElement.setAttribute('data-media', dataContent.id);
-        linkElement.addEventListener('click', (event) => {
-            event.preventDefault(); 
-            displayCarousel(pictureContent); 
-          });
-
-        if (video) {
-            const videoElement = document.createElement('video');
-            videoElement.setAttribute('class', 'photographe-main_video');
-            videoElement.setAttribute('controls', 'controls');
-
-            const source = document.createElement('source');
-            source.setAttribute('src', `../Sample Photos/${photographName}/${video}`);
-            source.setAttribute('type', 'video/mp4');
-
-            videoElement.appendChild(source);
-            linkElement.appendChild(videoElement);
-        } else {
-            let img = document.createElement('img');
-            img.setAttribute('src', pictureContent);
-            img.setAttribute('class', 'photographe-main_picture');
-            linkElement.appendChild(img);
-        }
-        
-        return linkElement;
-    }
-    return { getContentDOM };
-}
-
-
-
-
 let totalLikes = 0;
 let totalLikesElement;
 const likedImages = new Set();
@@ -184,3 +144,42 @@ function mediaTemplateDescription(dataContent, image) {
     return { getContentDOM };
 
 }
+
+
+function mediaTemplateVisual(dataContent, photographName) {
+    let { image, video } = dataContent;
+    let pictureContent = `../Sample Photos/${photographName}/${image}`;
+
+    function getContentDOM() {
+        const linkElement = document.createElement('a');
+        linkElement.setAttribute('href', '#');
+        linkElement.setAttribute('data-target', 'lightbox-container');
+        linkElement.setAttribute('data-media', dataContent.id);
+        linkElement.addEventListener('click', (event) => {
+            event.preventDefault(); 
+            displayCarousel(pictureContent); 
+          });
+
+        if (video) {
+            const videoElement = document.createElement('video');
+            videoElement.setAttribute('class', 'photographe-main_video');
+            videoElement.setAttribute('controls', 'controls');
+
+            const source = document.createElement('source');
+            source.setAttribute('src', `../Sample Photos/${photographName}/${video}`);
+            source.setAttribute('type', 'video/mp4');
+
+            videoElement.appendChild(source);
+            linkElement.appendChild(videoElement);
+        } else {
+            let img = document.createElement('img');
+            img.setAttribute('src', pictureContent);
+            img.setAttribute('class', 'photographe-main_picture');
+            linkElement.appendChild(img);
+        }
+        
+        return linkElement;
+    }
+    return { getContentDOM };
+}
+
