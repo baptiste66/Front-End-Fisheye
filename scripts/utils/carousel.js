@@ -37,12 +37,6 @@ const previousButton = document.querySelector('.btn_previous');
 let currentIndex = 0;
 
 
-
-
-  
-  function updateCarousel(dataContent) {
-    let { image, video } = dataContent;
-
 nextButton.addEventListener('click', () => {
   currentIndex = (currentIndex + 1) % mediaItems.length;
     console.log('next')
@@ -55,13 +49,19 @@ previousButton.addEventListener('click', () => {
   updateCarousel();
 });
 
-    const lightboxMedia = document.querySelector('.lightbox_media');
-    lightboxMedia.innerHTML = '';
 
-const mediaItems = [
+  const mediaItems = [
     { type: 'image', src: `../Sample Photos/${photographName}/${image}` },
     { type: 'video', src: `../Sample Photos/${photographName}/${video}` },
   ];
+  
+  
+  function updateCarousel() {
+
+    const lightboxMedia = document.querySelector('.lightbox_media');
+    lightboxMedia.innerHTML = '';
+
+
   
     const currentMedia = mediaItems[currentIndex];
   
