@@ -160,7 +160,7 @@ function mediaTemplateDescription(dataContent, image) {
                 totalLikesElement.innerHTML = `${totalLikes} <i class="fas fa-heart"></i>`;
                 likeButton.classList.remove('liked');
             }
-            sortAndDisplayMediaByLikes();
+            sortByLikes();
         });
         article.appendChild(description);
         article.appendChild(aside)    

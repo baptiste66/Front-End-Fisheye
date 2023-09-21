@@ -24,6 +24,10 @@ a{
 .logo {
     height: 50px;
     margin-left: 100px;
+    transition: 1s;
+}
+.logo:hover{
+    transform: scale(1.1);
 }
 
 .photographer_section {
@@ -62,7 +66,13 @@ a{
     display: inline;
     object-fit: cover;
     border-radius: 100%;
+    transition: 1s;
 }
+.photographer_section article img:hover{
+    transform: scale(1.1);
+}
+
+
 .photographer_section article p{
     margin-bottom: 0;
     margin-top: 5px;

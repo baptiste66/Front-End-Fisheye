@@ -36,6 +36,11 @@ const nextButton = document.querySelector('.btn_next');
 const previousButton = document.querySelector('.btn_previous');
 let currentIndex = 0;
 
+const mediaItems = [
+    { type: 'image', src: 'image1.jpg' },
+    { type: 'video', src: 'video1.mp4' },
+  ];
+
 nextButton.addEventListener('click', () => {
   currentIndex = (currentIndex + 1) % mediaItems.length;
 

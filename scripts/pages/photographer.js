@@ -24,12 +24,11 @@ async function displayData(photographer) {
 
 
 // for main content 
-
 async function displaycontentVisualAndDescription(medias, photographName) {
     const photographMain = document.querySelector(".photographe-main");
     
     for (const media of medias) {
-        const photographerWorkVisual = mediaTemplateVisual(media, photographName);
+        const photographerWorkVisual = mediaTemplateVisual(media, photographName, media.image, media.video);
         const photographerWorkDescription = mediaTemplateDescription(media, photographName);
 
         const visualDOM = photographerWorkVisual.getContentDOM();
