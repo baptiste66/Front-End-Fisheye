@@ -43,7 +43,7 @@
         </div>
         </div>
     </div>
-    
+</div>
 
       <div class="photographe-main">
       </div>
@@ -52,32 +52,45 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi </h2>
-          <img src="assets/icons/close.svg" alt="“Close Contact form” " onclick="closeModal()" />
+          <button class="closeContact" type="button"><img src="assets/icons/close.svg" alt="“Close Contact form”" /></button>
         </header>
 				<form>
           <div>
             <label for="first-name">Prénom</label>
-            <input id="first-name" aria-label="Prénom" />
+            <input id="first-name" aria-label="first-name" />
+            <div id="first-name-error" class="error-message"></div>
         </div>
           <div>
-            <label for="first-name">Nom</label>
-            <input id="first-name" aria-label="Nom" />
+            <label for="last-name">Nom</label>
+            <input id="last-name" aria-label="last-name" />
+            <div id="last-name-error" class="error-message"></div>
         </div>
         <div>
             <label for="email">Email</label>
             <input id="email" aria-label="Email" />
+            <div id="email-error" class="error-message"></div>
         </div>
         <div>
             <label for="message">Votre Message</label>
-            <textarea id="message" aria-label="Votre Message"></textarea>
+            <textarea id="message" aria-label="your Message"></textarea>
+            <div id="message-error" class="error-message"></div>
         </div>
         <button class="contact_button_submit" aria-label= "Send" >Envoyer</button>
 				</form>
 			</div>
 		</div>
+    <div id="lightbox_container">
+      <div class="lightbox" aria-label="image closeup view">
+        <button class="close_carousel" type="button"><img src="assets/icons/close.svg" alt="“Close dialog”" /></button>
+          <button class="btn_next"  aria-label="Next media"><span class="fa-solid fa-chevron-right" aria-hidden="true"></span></button>
+          <button class="btn_previous" aria-label="Previous media"><span class="fa-solid fa-chevron-left" aria-hidden="true"></span></button>
+          <figure class="lightbox_media" role="media" aria-label="Current Media"></figure>
+      </div> 
+  </div>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/templates/photographer-information.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
     <script src="/scripts/utils/filter.js"></script>
+    <script src="/scripts/utils/carousel.js"></script>
   </body>
 </html>

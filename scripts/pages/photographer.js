@@ -42,6 +42,7 @@ async function displaycontentVisualAndDescription(medias, photographName) {
         mediaContainer.appendChild(descriptionDOM);
 
         photographMain.appendChild(mediaContainer);
+        
     }
 }
 

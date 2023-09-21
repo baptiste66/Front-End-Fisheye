@@ -44,7 +44,13 @@ li{
     position: absolute;
    top: 160px;
 }
-
+/*form*/
+form div{
+  margin: 0;
+}
+.error-message{
+  margin: 0;
+}
 .modal { 
     border-radius: 5px;
     background-color: #DB8876;
@@ -67,6 +73,9 @@ li{
 .modal header img {
     cursor: pointer;
     margin-top: -88px;
+}
+.modal header button{
+  background-color: transparent;
 }
 
 .modal header h2 {
@@ -100,7 +109,7 @@ form div {
 
 form input {
     width: 100%;
-    height: 50px;
+    height: 40px;
     border: none;
     border-radius: 5px;
 }
@@ -122,7 +131,7 @@ form textarea{
   border-radius: 5px;
   cursor: pointer;
 }
-
+/*fin modal*/
 .photographePicture{
     height: 200px;
     width: 200px;
@@ -326,3 +335,38 @@ justify-content: space-between;
     margin: 0;
     margin-right: 20px;
   }
+
+  #lightbox_container{
+    display: none;
+  z-index: 10;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  }
+  #lightbox_container .carousel_content{justify-content: center;
+  align-items: center;
+  height: 500px ;
+  width: 500px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+.close_carousel{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.btn_previous{position: absolute;
+  top: 50%;
+  left: 0;
+}
+.btn_next{position: absolute;
+  top: 50%;
+  right: 0;
+}
