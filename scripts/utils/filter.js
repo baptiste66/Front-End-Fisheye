@@ -66,23 +66,28 @@ function sortByTitle() {
 
 
 function sortByDate() {
-    console.log('sortByDate function called');
+    console.log('date'); 
+
     const photographMain = document.querySelector(".photographe-main");
     const mediaContainer = Array.from(photographMain.querySelectorAll(".media-container"));
 
-    
     mediaContainer.forEach(container => container.remove());
-    
-    
+
     mediaContainer.sort((a, b) => {
-        const dateA = new Date(a.getAttribute('data-date'));
-        const dateB = new Date(b.getAttribute('data-date'));
+        const dateA = new Date(a.getAttribute('data-media-date'));
+        const dateB = new Date(b.getAttribute('data-media-date'));
         return dateA - dateB;
     });
 
-    
-    mediaContainer.forEach(container => photographMain.appendChild(container));
+    mediaContainer.forEach(container => {
+        photographMain.appendChild(container);
+
+       
+        const dateAttributeValue = container.getAttribute('data-media-date');
+        console.log('data-media-date:', dateAttributeValue);
+    });
 }
+
 
 
 

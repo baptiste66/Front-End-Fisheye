@@ -268,7 +268,7 @@ justify-content: space-between;
   }
   .dropdown_content{
     margin: 0;
-    margin-bottom: -88px;
+    margin-bottom: -138px;
     padding: 0;
   }
   .dropdown_content li::before {

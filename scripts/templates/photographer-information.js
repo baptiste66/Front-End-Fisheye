@@ -118,7 +118,13 @@ function mediaTemplateDescription(dataContent, image) {
     function getContentDOM() {
         const article = document.createElement('article');
         article.setAttribute('class', 'template_content');
-        article.setAttribute('data-media-date',date);
+       
+        const photographMain = document.querySelector(".photographe-main");
+    const mediaContainers = Array.from(photographMain.querySelectorAll(".media-container"));
+
+    mediaContainers.forEach(container => {
+        container.setAttribute('data-media-date', date);
+    });
 
         const aside = document.createElement('aside')
 
