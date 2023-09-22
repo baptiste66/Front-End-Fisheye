@@ -1,8 +1,10 @@
 const lightboxMedia = document.querySelector('.lightbox_media');
 const closeCarousel = document.querySelector('.close_carousel');
+const nextButton = document.querySelector('.btn_next');
+const previousButton = document.querySelector('.btn_previous');
+let currentIndex = 0;
 
-
-function displayCarousel(photoURL) {
+function displayCarouselImage(photoURL) {
   const lightboxMedia = document.querySelector('.lightbox_media');
   lightboxMedia.innerHTML = '';
   const img = document.createElement('img');
@@ -11,6 +13,25 @@ function displayCarousel(photoURL) {
   img.setAttribute('class', 'carousel_content')
   lightboxMedia.appendChild(img);
 
+  const modal = document.getElementById("lightbox_container");
+  modal.style.display = "flex";
+}
+
+function displayCarouselVideo(videoURL) {
+  const lightboxMedia = document.querySelector('.lightbox_media');
+  lightboxMedia.innerHTML = '';
+  
+  const video = document.createElement('video');
+  video.setAttribute('controls', 'controls');
+  video.setAttribute('class', 'carousel_content');
+  
+  const source = document.createElement('source');
+  source.setAttribute('src', videoURL);
+  source.setAttribute('type', 'video/mp4');
+  
+  video.appendChild(source);
+  lightboxMedia.appendChild(video);
+  
   const modal = document.getElementById("lightbox_container");
   modal.style.display = "flex";
 }
@@ -32,9 +53,7 @@ function closeCarouselFunction() {
   modal.style.display = "none";
 }
 
-const nextButton = document.querySelector('.btn_next');
-const previousButton = document.querySelector('.btn_previous');
-let currentIndex = 0;
+
 
 
 nextButton.addEventListener('click', () => {
@@ -86,4 +105,6 @@ previousButton.addEventListener('click', () => {
       lightboxMedia.appendChild(videoElement);
     }
   }
-updateCarousel();
+
+
+
