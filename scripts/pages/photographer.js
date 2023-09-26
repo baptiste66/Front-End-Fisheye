@@ -21,14 +21,14 @@ async function displayData(photographer) {
     photographHeader.appendChild(userCardDOM);
 }
 
-
-
+const mediaItems = [];
+console.log(mediaItems)
 // for main content 
 async function displaycontentVisualAndDescription(medias, photographName) {
     const photographMain = document.querySelector(".photographe-main");
     
     for (const media of medias) {
-        const photographerWorkVisual = mediaTemplateVisual(media, photographName, media.image, media.video);
+        const photographerWorkVisual = mediaTemplateVisual(media, photographName);
         const photographerWorkDescription = mediaTemplateDescription(media, photographName);
 
         const visualDOM = photographerWorkVisual.getContentDOM();
@@ -39,6 +39,12 @@ async function displaycontentVisualAndDescription(medias, photographName) {
 
         mediaContainer.appendChild(visualDOM);
         mediaContainer.appendChild(descriptionDOM);
+        mediaItems.push({
+            type: media.video ? 'video' : 'image',
+            src: media.video ? `../Sample Photos/${photographName}/${media.video}` :
+             `../Sample Photos/${photographName}/${media.image}`,
+            title: media.title 
+        });
 
         photographMain.appendChild(mediaContainer);
         
@@ -50,7 +56,6 @@ async function displaycontentVisualAndDescription(medias, photographName) {
 
 async function init() {
     let photographName = params.get("name");
-
 
     const { photographers, media } = await getPhotographers();
     const photographer = photographers.find((p) => p.id.toString() === id);
@@ -70,3 +75,6 @@ async function init() {
     } sortByLikes()
 }
 init()
+
+
+

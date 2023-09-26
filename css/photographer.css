@@ -152,7 +152,7 @@ form textarea{
     flex-wrap: wrap;
   }
   
-  .template_content {
+  .media-container {
     max-width: 370px;
     flex: 1; 
     margin-bottom: 0px; 
@@ -173,7 +173,7 @@ form textarea{
   transform: scale(1.1);
 }
 
-.photographe-main_video{
+.photographe-main_video {
   width: 370px;
   height: 351px;
     will-change: contents;
@@ -340,6 +340,9 @@ justify-content: space-between;
     margin-right: 20px;
   }
 
+
+  /*lightbox*/
+
   #lightbox_container{
     display: none;
   z-index: 10;
@@ -351,26 +354,55 @@ justify-content: space-between;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5);
+  background-color: white;
   }
-  #lightbox_container .carousel_content{justify-content: center;
+  #lightbox_container .carousel_content{
+    justify-content: center;
   align-items: center;
-  height: 500px ;
-  width: 500px;
+  height: 620px ;
+  width: 600px;
   display: flex;
   margin-left: auto;
   margin-right: auto;
 }
-.close_carousel{
+
+#lightbox_container video{
+  justify-content: center;
+  align-items: center;
+  height: 620px ;
+  width: 600px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.close_carousel {
   position: absolute;
   top: 5%;
   right: 5%;
+  color: #901C1C;
+  background-color: black;
+  cursor: pointer;
+ 
 }
-.btn_previous{position: absolute;
+.btn_previous {position: absolute;
   top: 50%;
   left: 5%;
+  color: #901C1C;
+  font-size: xx-large;
+  background-color: transparent;
+  cursor: pointer;
 }
 .btn_next{position: absolute;
   top: 50%;
   right: 5%;
+  color: #901C1C;
+  font-size: xx-large;
+  background-color: transparent;
+  cursor: pointer;
+}
+.lightbox_title{
+  color: #901C1C;
+  margin-left: 35px;
 }

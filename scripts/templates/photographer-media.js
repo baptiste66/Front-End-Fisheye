@@ -147,7 +147,7 @@ function mediaTemplateDescription(dataContent, image) {
 
 
 function mediaTemplateVisual(dataContent, photographName) {
-    let { image, video } = dataContent;
+    let { image, video, title } = dataContent;
     let pictureContent = `../Sample Photos/${photographName}/${image}`;
     let videoContent = `../Sample Photos/${photographName}/${video}`;
     function getContentDOM() {
@@ -157,9 +157,8 @@ function mediaTemplateVisual(dataContent, photographName) {
         linkElement.setAttribute('data-media', dataContent.id);
         linkElement.addEventListener('click', (event) => {
             event.preventDefault(); 
-            if(video){displayCarouselVideo(videoContent)
-            }else{
-            displayCarouselImage(pictureContent); }
+            displayCarousel(pictureContent, videoContent, dataContent, image, video, title)
+            
           });
 
         if (video) {
@@ -173,7 +172,7 @@ function mediaTemplateVisual(dataContent, photographName) {
 
             videoElement.appendChild(source);
             linkElement.appendChild(videoElement);
-        } else {
+        } else  {
             let img = document.createElement('img');
             img.setAttribute('src', pictureContent);
             img.setAttribute('class', 'photographe-main_picture');
@@ -181,6 +180,7 @@ function mediaTemplateVisual(dataContent, photographName) {
         }
         
         return linkElement;
+        
     }
     return { getContentDOM };
 }

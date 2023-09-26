@@ -2,39 +2,70 @@ const lightboxMedia = document.querySelector('.lightbox_media');
 const closeCarousel = document.querySelector('.close_carousel');
 const nextButton = document.querySelector('.btn_next');
 const previousButton = document.querySelector('.btn_previous');
+const lightboxTitle = document.querySelector('.lightbox_title')
 let currentIndex = 0;
 
-function displayCarouselImage(photoURL) {
+function displayCarousel(pictureContent, videoContent, dataContent, image, video, title) {
+
   const lightboxMedia = document.querySelector('.lightbox_media');
   lightboxMedia.innerHTML = '';
-  const img = document.createElement('img');
-  img.setAttribute('src', photoURL);
-  img.setAttribute('alt', 'Current Media');
-  img.setAttribute('class', 'carousel_content')
-  lightboxMedia.appendChild(img);
+  lightboxTitle.innerHTML = ''; 
+    let h2 = document.createElement('h2');
+    h2.textContent = title;
+    lightboxTitle.appendChild(h2)
 
+  if (image) {
+    const img = document.createElement('img');
+    img.setAttribute('src', pictureContent);
+    img.setAttribute('alt', 'Current Media');
+    img.setAttribute('class', 'carousel_content');
+    lightboxMedia.appendChild(img);
+  } else  {
+    const video = document.createElement('video');
+    video.setAttribute('controls', 'controls');
+    video.setAttribute('class', 'carousel_content');
+
+    const source = document.createElement('source');
+    source.setAttribute('src', videoContent);
+    source.setAttribute('type', 'video/mp4');
+
+    video.appendChild(source);
+    lightboxMedia.appendChild(video);
+  }
   const modal = document.getElementById("lightbox_container");
   modal.style.display = "flex";
+
+  nextButton.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % mediaItems.length;
+      console.log('next')
+      console.log(title)
+    updateCarousel(pictureContent, videoContent, dataContent, image, video);
+    lightboxTitle.innerHTML = ''; 
+    let h2 = document.createElement('h2');
+    h2.textContent = mediaItems[currentIndex].title;
+    lightboxTitle.appendChild(h2); 
+  });
+  
+  
+  previousButton.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + mediaItems.length) % mediaItems.length;
+    updateCarousel(pictureContent, videoContent, dataContent, image, video);
+    lightboxTitle.innerHTML = ''; 
+    let h2 = document.createElement('h2');
+    h2.textContent = mediaItems[currentIndex].title;
+    lightboxTitle.appendChild(h2); 
+  });
+    
 }
 
-function displayCarouselVideo(videoURL) {
-  const lightboxMedia = document.querySelector('.lightbox_media');
-  lightboxMedia.innerHTML = '';
-  
-  const video = document.createElement('video');
-  video.setAttribute('controls', 'controls');
-  video.setAttribute('class', 'carousel_content');
-  
-  const source = document.createElement('source');
-  source.setAttribute('src', videoURL);
-  source.setAttribute('type', 'video/mp4');
-  
-  video.appendChild(source);
-  lightboxMedia.appendChild(video);
-  
-  const modal = document.getElementById("lightbox_container");
-  modal.style.display = "flex";
+function updateTitle(title) {
+  lightboxTitle.innerHTML = ''; 
+  let h2 = document.createElement('h2');
+  h2.textContent = title;
+  lightboxTitle.appendChild(h2); 
 }
+
+
 
 if (closeCarousel) {
   closeCarousel.addEventListener('click', () => {
@@ -53,35 +84,11 @@ function closeCarouselFunction() {
   modal.style.display = "none";
 }
 
-
-
-
-nextButton.addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % mediaItems.length;
-    console.log('next')
-  updateCarousel();
-});
-
-
-previousButton.addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + mediaItems.length) % mediaItems.length;
-  updateCarousel();
-});
-
-
-  const mediaItems = [
-    { type: 'image', src: `../Sample Photos/${photographName}/${image}` },
-    { type: 'video', src: `../Sample Photos/${photographName}/${video}` },
-  ];
-  
-  
   function updateCarousel() {
-
+  
     const lightboxMedia = document.querySelector('.lightbox_media');
     lightboxMedia.innerHTML = '';
-
-
-  
+    
     const currentMedia = mediaItems[currentIndex];
   
     if (currentMedia.type === 'image') {
@@ -89,6 +96,7 @@ previousButton.addEventListener('click', () => {
       const img = document.createElement('img');
       img.setAttribute('src', currentMedia.src); 
       img.setAttribute('alt', 'Current Media');
+      img.setAttribute('class', 'carousel_content')
       lightboxMedia.appendChild(img);
 
     } else if (currentMedia.type === 'video') {
