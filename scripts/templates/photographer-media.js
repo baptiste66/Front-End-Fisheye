@@ -148,8 +148,8 @@ function mediaTemplateDescription(dataContent, image) {
 
 function mediaTemplateVisual(dataContent, photographName) {
     let { image, video, title } = dataContent;
-    let pictureContent = `../Sample Photos/${photographName}/${image}`;
-    let videoContent = `../Sample Photos/${photographName}/${video}`;
+    let pictureContent = `Sample Photos/${photographName}/${image}`;
+    let videoContent = `Sample Photos/${photographName}/${video}`;
     function getContentDOM() {
         const linkElement = document.createElement('a');
         linkElement.setAttribute('href', '#');
