@@ -158,13 +158,16 @@ function mediaTemplateVisual(dataContent, photographName) {
         linkElement.addEventListener('click', (event) => {
             event.preventDefault(); 
             displayCarousel(pictureContent, videoContent, dataContent, image, video, title)
-            
+            const allElements = document.querySelectorAll('*:not(#lightbox_container)');
+            allElements.forEach((element) => {
+                element.setAttribute('aria-hidden', 'true');
+            });
           });
 
         if (video) {
             const videoElement = document.createElement('video');
             videoElement.setAttribute('class', 'photographe-main_video');
-            
+            videoElement.setAttribute('aria-label', 'Lilac breasted roller, closeup view')
 
             const source = document.createElement('source');
             source.setAttribute('src', videoContent);
@@ -176,6 +179,7 @@ function mediaTemplateVisual(dataContent, photographName) {
             let img = document.createElement('img');
             img.setAttribute('src', pictureContent);
             img.setAttribute('class', 'photographe-main_picture');
+            img.setAttribute('aria-label', 'Lilac breasted roller, closeup view')
             linkElement.appendChild(img);
         }
         

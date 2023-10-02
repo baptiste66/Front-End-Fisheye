@@ -82,6 +82,10 @@ if (closeCarousel) {
 function closeCarouselFunction() {
   const modal = document.getElementById("lightbox_container");
   modal.style.display = "none";
+  const allElements = document.querySelectorAll('#lightbox_container');
+  allElements.forEach((element) => {
+    element.setAttribute('aria-hidden', 'false');
+  });
 }
 
   function updateCarousel() {

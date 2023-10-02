@@ -16,6 +16,7 @@ function photographerTemplate(data) {
 
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
+        img.setAttribute('aria-label', `${name}`);
 
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
