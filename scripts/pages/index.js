@@ -3,8 +3,8 @@
        
         const response = await fetch('./data/photographers.json'); 
         
-        const photographersData = await response.json();
-        return photographersData;
+        const data = await response.json();
+        return data;
     } catch (error) {
         console.error('Une erreur est survenue :', error);
         return { photographers: [] };

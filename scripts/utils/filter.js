@@ -108,7 +108,10 @@ function sortByLikes() {
         return likesA - likesB;
     });
 
+    
     mediaContainer.forEach(container => photographMain.appendChild(container));
+    
+    
     updateMediaItems(mediaContainer);
 }
 

@@ -5,8 +5,8 @@ let id = params.get("id");
 const getPhotographers = async () => {
     try {
         const response = await fetch('./data/photographers.json'); 
-        const photographersData = await response.json();
-        return photographersData;
+        const data = await response.json();
+        return data;
     } catch (error) {
         console.error('Une erreur est survenue :', error);
         return { photographers: [] };
@@ -28,10 +28,14 @@ async function displaycontentVisualAndDescription(medias, photographName) {
     
     for (let i = 0; i < medias.length; i++) {
         const media = medias[i];
-        const photographerWorkVisual = mediaTemplateVisual(media, photographName);
+        const mediaFactory = new MediaFactory(photographName);
+
+        const photographerWorkVisual = mediaFactory.createMedia(media);
+
+
         const photographerWorkDescription = mediaTemplateDescription(media, photographName);
 
-        const visualDOM = photographerWorkVisual.getContentDOM();
+        const visualDOM = photographerWorkVisual;
         const descriptionDOM = photographerWorkDescription.getContentDOM();
 
         const mediaContainer = document.createElement('div');
@@ -40,7 +44,6 @@ async function displaycontentVisualAndDescription(medias, photographName) {
         mediaContainer.appendChild(visualDOM);
         mediaContainer.appendChild(descriptionDOM);
 
-        
         mediaItems.push({
             type: media.video ? 'video' : 'image',
             src: media.video ? `../Sample Photos/${photographName}/${media.video}` :

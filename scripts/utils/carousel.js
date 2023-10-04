@@ -4,7 +4,9 @@ const nextButton = document.querySelector('.btn_next');
 const previousButton = document.querySelector('.btn_previous');
 const lightboxTitle = document.querySelector('.lightbox_title')
 
-function displayCarousel(pictureContent, videoContent, dataContent, image, video, title) {
+
+
+function displayCarousel(clickedMedia, mediaInstance, dataContent, image, video, title) {
   currentIndex=[]
   const lightboxMedia = document.querySelector('.lightbox_media');
   lightboxMedia.innerHTML = '';
@@ -15,7 +17,7 @@ function displayCarousel(pictureContent, videoContent, dataContent, image, video
 
   if (image) {
     const img = document.createElement('img');
-    img.setAttribute('src', pictureContent);
+    img.setAttribute('src', clickedMedia);
     img.setAttribute('alt', 'Current Media');
     img.setAttribute('class', 'carousel_content');
     lightboxMedia.appendChild(img);
@@ -25,7 +27,7 @@ function displayCarousel(pictureContent, videoContent, dataContent, image, video
     video.setAttribute('class', 'carousel_content');
 
     const source = document.createElement('source');
-    source.setAttribute('src', videoContent);
+    source.setAttribute('src', mediaInstance.getSrc());
     source.setAttribute('type', 'video/mp4');
 
     video.appendChild(source);

@@ -64,7 +64,7 @@ function photographerTemplate(data) {
     return { name, picture, getUserCardDOM };
 }
 
-
+let customNumber = 0;
 let totalLikes = 0;
 let totalLikesElement;
 const likedImages = new Set();
@@ -154,60 +154,113 @@ function mediaTemplateDescription(dataContent, image) {
 }
 
 
-function mediaTemplateVisual(dataContent, photographName) {
-    let { image, video, title } = dataContent;
-    let pictureContent = `Sample Photos/${photographName}/${image}`;
-    let videoContent = `Sample Photos/${photographName}/${video}`;
+class MediaFactory {
+    constructor(photographName= {}) {
+        this.photographName = photographName;
+    }
 
-    function getContentDOM() {
+    createMedia(dataContent) {
+        const { image, video, title } = dataContent;
+        const mediaType = video ? 'video' : 'image';
+        const mediaContent = `Sample Photos/${photographName}/${mediaType === 'image' ? image : video}`;
+        
+        const mediaInstance = MediaFactory.createMediaInstance(mediaType, {
+            src: mediaContent,
+            title: title,
+        });
+
         const linkElement = document.createElement('a');
         linkElement.setAttribute('href', '#');
-        linkElement.setAttribute('data-target', 'lightbox-container');
-        linkElement.setAttribute('aria-label', 'Lilac breasted roller, closeup view')
+        linkElement.setAttribute('data-target',  'lightbox-container');
+        linkElement.setAttribute('aria-label',  'Lilac breasted roller, closeup view');
         linkElement.setAttribute('data-media', dataContent.id);
 
         linkElement.addEventListener('click', (event) => {
-            event.preventDefault(); 
+            event.preventDefault();
             const main = document.querySelector('main');
             const elementsInsideMain = main.querySelectorAll('*');
             const header = document.querySelector('header');
-          const elementsInsideHeader = header.querySelectorAll('*');
+            const elementsInsideHeader = header.querySelectorAll('*');
 
             elementsInsideHeader.forEach((element) => {
                 element.setAttribute('tabindex', '-1');
-                element.setAttribute('aria-hidden', 'true')
+                element.setAttribute('aria-hidden', 'true');
             });
 
             elementsInsideMain.forEach((element) => {
                 element.setAttribute('tabindex', '-1');
-                element.setAttribute('aria-hidden', 'true')
+                element.setAttribute('aria-hidden', 'true');
             });
-            displayCarousel(pictureContent, videoContent, dataContent, image, video, title)
-          });
+            displayCarousel(mediaContent, mediaInstance, dataContent, image, video, title);
+           
+        });
 
-        if (video) {
-            const videoElement = document.createElement('video');
-            videoElement.setAttribute('class', 'photographe-main_video')
-            const source = document.createElement('source');
-            videoElement.setAttribute('src', videoContent);
-            source.setAttribute('type', 'video/mp4');
-            videoElement.setAttribute('aria-label', 'Lilac breasted roller, closeup view')
-            videoElement.setAttribute('aria-hidden', 'true');
+        linkElement.appendChild(mediaInstance.getContentDOM());
 
-            videoElement.appendChild(source);
-            linkElement.appendChild(videoElement);
-        } else  {
-            let img = document.createElement('img');
-            img.setAttribute('src', pictureContent);
-            img.setAttribute('class', 'photographe-main_picture');
-            img.setAttribute('aria-label', 'Lilac breasted roller, closeup view')
-            img.setAttribute('aria-hidden', 'true');
-
-            linkElement.appendChild(img);
-        }
-        
         return linkElement;
-        
     }
-    return { getContentDOM };
+
+    static createMediaInstance(type, { src, title }) {
+        if (type === 'video') {
+            return new VideoMedia(src, title);
+        } else {
+            return new ImageMedia(src, title);
+        }
+    }
 }
+
+class ImageMedia {
+    constructor(src, title = {}) {
+        this.src = src;
+        this.title = title;
+    }
+
+    getContentDOM() {
+        const img = document.createElement('img');
+        img.setAttribute('src', this.src);
+        img.setAttribute('class', 'photographe-main_picture');
+        img.setAttribute('aria-label', this.title);
+        img.setAttribute('aria-hidden', 'true');
+
+        return img;
+    }
+
+    getTitle() {
+        return this.title;
+    }
+
+    getSrc() {
+        return this.src;
+    }
+}
+
+class VideoMedia {
+    constructor(src, title = {}) {
+        this.src = src;
+        this.title = title;
+    }
+
+    getContentDOM() {
+        const videoElement = document.createElement('video');
+        videoElement.setAttribute('class', 'photographe-main_video');
+        videoElement.setAttribute('src', this.src);
+        videoElement.setAttribute('aria-label', this.title);
+        videoElement.setAttribute('aria-hidden', 'true');
+
+        const source = document.createElement('source');
+        source.setAttribute('type', 'video/mp4');
+        videoElement.appendChild(source);
+
+        return videoElement;
+    }
+
+    getTitle() {
+        return this.title;
+    }
+
+    getSrc() {
+        return this.src;
+    }
+}
+
+
