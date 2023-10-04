@@ -1,9 +1,25 @@
-function displayModal() {
-    const modal = document.getElementById("contact_modal");
-	modal.style.display = "block";
-}
+const modal = document.getElementById("contact_modal");
 const closeContact = document.getElementsByClassName('closeContact')[0];
+const contactButton = document.querySelector('.contact_button')
 
+
+
+contactButton.addEventListener('click', () => {
+  modal.style.display = 'block';
+  const main = document.querySelector('main');
+  const elementsInsideMain = main.querySelectorAll('*');
+  const header = document.querySelector('header');
+const elementsInsideHeader = header.querySelectorAll('*');
+
+elementsInsideHeader.forEach((element) => {
+  element.setAttribute('tabindex', '-1');
+  element.setAttribute('aria-hidden', 'true')
+});
+  elementsInsideMain.forEach((element) => {
+    element.setAttribute('tabindex', '-1');
+    element.setAttribute('aria-hidden', 'true')
+  });
+});
 
   closeContact.addEventListener('click', () => {
     closeModal();
@@ -20,9 +36,7 @@ const closeContact = document.getElementsByClassName('closeContact')[0];
     }
   });
 
-
 function closeModal() {
-    const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
 }
 

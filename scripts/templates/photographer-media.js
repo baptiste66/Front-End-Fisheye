@@ -93,6 +93,7 @@ function mediaTemplateDescription(dataContent, image) {
 
         const like_content =document.createElement('span')
         like_content.setAttribute('class','like_content')
+        like_content.setAttribute('role',"group")
 
         let h2 = document.createElement('h2');
         h2.textContent = title;
@@ -102,6 +103,8 @@ function mediaTemplateDescription(dataContent, image) {
         likesContent.setAttribute('aria-label', `likes`);
         const likeButton=document.createElement('button')
         likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+        likeButton.setAttribute('aria-hidden', 'true');
+        likeButton.setAttribute('aria-label', `likes`);
 
         likeButton.addEventListener('click', () => {
             if (!likeButton.classList.contains('liked')) {
@@ -154,6 +157,7 @@ function mediaTemplateVisual(dataContent, photographName) {
         const linkElement = document.createElement('a');
         linkElement.setAttribute('href', '#');
         linkElement.setAttribute('data-target', 'lightbox-container');
+        linkElement.setAttribute('aria-label', 'Lilac breasted roller, closeup view')
         linkElement.setAttribute('data-media', dataContent.id);
         linkElement.addEventListener('click', (event) => {
             event.preventDefault(); 
@@ -167,12 +171,12 @@ function mediaTemplateVisual(dataContent, photographName) {
 
         if (video) {
             const videoElement = document.createElement('video');
-            videoElement.setAttribute('class', 'photographe-main_video');
-            videoElement.setAttribute('aria-label', 'Lilac breasted roller, closeup view')
-
+            videoElement.setAttribute('class', 'photographe-main_video')
             const source = document.createElement('source');
             source.setAttribute('src', videoContent);
             source.setAttribute('type', 'video/mp4');
+            videoElement.setAttribute('aria-label', 'Lilac breasted roller, closeup view')
+            videoElement.setAttribute('aria-hidden', 'true');
 
             videoElement.appendChild(source);
             linkElement.appendChild(videoElement);
@@ -181,6 +185,7 @@ function mediaTemplateVisual(dataContent, photographName) {
             img.setAttribute('src', pictureContent);
             img.setAttribute('class', 'photographe-main_picture');
             img.setAttribute('aria-label', 'Lilac breasted roller, closeup view')
+            img.setAttribute('aria-hidden', 'true');
             linkElement.appendChild(img);
         }
         
