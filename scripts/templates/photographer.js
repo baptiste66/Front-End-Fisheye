@@ -1,3 +1,5 @@
+
+// for diferents photographer's
 function photographerTemplate(data) {
     const { name, portrait, country, city, price, id, tagline } = data;
 

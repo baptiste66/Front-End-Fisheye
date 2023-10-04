@@ -21,7 +21,7 @@ async function displayData(photographer) {
     photographHeader.appendChild(userCardDOM);
 }
 
-
+// for photographer's content 
 mediaItems=[]
 async function displaycontentVisualAndDescription(medias, photographName) {
     const photographMain = document.querySelector(".photographe-main");

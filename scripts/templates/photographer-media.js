@@ -1,5 +1,6 @@
 let photographName =params.get("name");
 
+// for photographer's information header
 function photographerTemplate(data) {
     let { name, portrait, country, city, price, tagline } = data;
 
@@ -69,6 +70,7 @@ let totalLikes = 0;
 let totalLikesElement;
 const likedImages = new Set();
 
+// for photographer's content information
 function mediaTemplateDescription(dataContent, image) {
     let { title, likes, date } = dataContent;
     let likesNumber = parseInt(likes);
@@ -153,7 +155,7 @@ function mediaTemplateDescription(dataContent, image) {
 
 }
 
-
+// for photographer's content in media Factori pattern 
 class MediaFactory {
     constructor(photographName= {}) {
         this.photographName = photographName;

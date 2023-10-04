@@ -37,16 +37,16 @@ function displayCarousel(clickedMedia, mediaInstance, dataContent, image, video,
   modal.style.display = "flex";
 
 
-  nextButton.removeEventListener('click', handleNextClick);
-  previousButton.removeEventListener('click', handlePreviousClick);
+  nextButton.removeEventListener('click', NextClick);
+  previousButton.removeEventListener('click', PreviousClick);
 
  
-  nextButton.addEventListener('click', handleNextClick);
-  previousButton.addEventListener('click', handlePreviousClick);
+  nextButton.addEventListener('click', NextClick);
+  previousButton.addEventListener('click', PreviousClick);
 }
 
 
-function handleNextClick() {
+function NextClick() {
   currentIndex = (currentIndex + 1) % mediaItems.length;
   updateCarousel();
   lightboxTitle.innerHTML = ''; 
@@ -56,7 +56,7 @@ function handleNextClick() {
 }
 
 
-function handlePreviousClick() {
+function PreviousClick() {
   currentIndex = (currentIndex - 1 + mediaItems.length) % mediaItems.length;
   updateCarousel();
   lightboxTitle.innerHTML = ''; 

@@ -6,7 +6,7 @@ const currentFilterElement = document.querySelector('#current_filter');
 
 const optionButtons = document.querySelectorAll('.dropdown_content button');
 
-function handleOptionSelection(option) {
+function OptionSelection(option) {
     if (option.textContent !== currentFilterElement.textContent) {
         currentFilterElement.textContent = option.textContent;
     }
@@ -118,7 +118,7 @@ function sortByLikes() {
 
 optionButtons.forEach(function(optionButton) {
     optionButton.addEventListener('click', function() {
-        handleOptionSelection(optionButton);
+        OptionSelection(optionButton);
         updateOptions();
         closeDropdown();
         const selectedOption = currentFilterElement.textContent;
