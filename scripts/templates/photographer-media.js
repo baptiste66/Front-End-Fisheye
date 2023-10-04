@@ -123,7 +123,12 @@ function mediaTemplateDescription(dataContent, image) {
                 totalLikesElement.innerHTML = `${totalLikes} <i class="fas fa-heart"></i>`;
                 likeButton.classList.remove('liked');
             }
-            sortByLikes();
+            const currentFilterElement = document.querySelector('#current_filter');
+            const selectedOption = currentFilterElement.textContent;
+            if (selectedOption === 'Popularité') {
+            
+                sortByLikes();
+            }
         });
         article.appendChild(description);
         article.appendChild(aside)    
@@ -153,18 +158,29 @@ function mediaTemplateVisual(dataContent, photographName) {
     let { image, video, title } = dataContent;
     let pictureContent = `Sample Photos/${photographName}/${image}`;
     let videoContent = `Sample Photos/${photographName}/${video}`;
+
     function getContentDOM() {
         const linkElement = document.createElement('a');
         linkElement.setAttribute('href', '#');
         linkElement.setAttribute('data-target', 'lightbox-container');
         linkElement.setAttribute('aria-label', 'Lilac breasted roller, closeup view')
         linkElement.setAttribute('data-media', dataContent.id);
+
         linkElement.addEventListener('click', (event) => {
             event.preventDefault(); 
-            const elementsToHide = document.querySelectorAll('#main, #header');
-            elementsToHide.forEach((element) => {
-                element.setAttribute('aria-hidden', 'true');
-                element.style.display = 'none';
+            const main = document.querySelector('main');
+            const elementsInsideMain = main.querySelectorAll('*');
+            const header = document.querySelector('header');
+          const elementsInsideHeader = header.querySelectorAll('*');
+
+            elementsInsideHeader.forEach((element) => {
+                element.setAttribute('tabindex', '-1');
+                element.setAttribute('aria-hidden', 'true')
+            });
+
+            elementsInsideMain.forEach((element) => {
+                element.setAttribute('tabindex', '-1');
+                element.setAttribute('aria-hidden', 'true')
             });
             displayCarousel(pictureContent, videoContent, dataContent, image, video, title)
           });
@@ -173,7 +189,7 @@ function mediaTemplateVisual(dataContent, photographName) {
             const videoElement = document.createElement('video');
             videoElement.setAttribute('class', 'photographe-main_video')
             const source = document.createElement('source');
-            source.setAttribute('src', videoContent);
+            videoElement.setAttribute('src', videoContent);
             source.setAttribute('type', 'video/mp4');
             videoElement.setAttribute('aria-label', 'Lilac breasted roller, closeup view')
             videoElement.setAttribute('aria-hidden', 'true');
@@ -186,6 +202,7 @@ function mediaTemplateVisual(dataContent, photographName) {
             img.setAttribute('class', 'photographe-main_picture');
             img.setAttribute('aria-label', 'Lilac breasted roller, closeup view')
             img.setAttribute('aria-hidden', 'true');
+
             linkElement.appendChild(img);
         }
         

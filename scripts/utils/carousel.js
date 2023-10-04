@@ -3,10 +3,9 @@ const closeCarousel = document.querySelector('.close_carousel');
 const nextButton = document.querySelector('.btn_next');
 const previousButton = document.querySelector('.btn_previous');
 const lightboxTitle = document.querySelector('.lightbox_title')
-let currentIndex = 0;
 
 function displayCarousel(pictureContent, videoContent, dataContent, image, video, title) {
-
+  currentIndex=[]
   const lightboxMedia = document.querySelector('.lightbox_media');
   lightboxMedia.innerHTML = '';
   lightboxTitle.innerHTML = ''; 
@@ -35,28 +34,35 @@ function displayCarousel(pictureContent, videoContent, dataContent, image, video
   const modal = document.getElementById("lightbox_container");
   modal.style.display = "flex";
 
-  nextButton.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % mediaItems.length;
-      console.log('next')
-      console.log(title)
-    updateCarousel(pictureContent, videoContent, dataContent, image, video);
-    lightboxTitle.innerHTML = ''; 
-    let h2 = document.createElement('h2');
-    h2.textContent = mediaItems[currentIndex].title;
-    lightboxTitle.appendChild(h2); 
-  });
-  
-  
-  previousButton.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + mediaItems.length) % mediaItems.length;
-    updateCarousel(pictureContent, videoContent, dataContent, image, video);
-    lightboxTitle.innerHTML = ''; 
-    let h2 = document.createElement('h2');
-    h2.textContent = mediaItems[currentIndex].title;
-    lightboxTitle.appendChild(h2); 
-  });
-    
+
+  nextButton.removeEventListener('click', handleNextClick);
+  previousButton.removeEventListener('click', handlePreviousClick);
+
+ 
+  nextButton.addEventListener('click', handleNextClick);
+  previousButton.addEventListener('click', handlePreviousClick);
 }
+
+
+function handleNextClick() {
+  currentIndex = (currentIndex + 1) % mediaItems.length;
+  updateCarousel();
+  lightboxTitle.innerHTML = ''; 
+  let h2 = document.createElement('h2');
+  h2.textContent = mediaItems[currentIndex].title;
+  lightboxTitle.appendChild(h2); 
+}
+
+
+function handlePreviousClick() {
+  currentIndex = (currentIndex - 1 + mediaItems.length) % mediaItems.length;
+  updateCarousel();
+  lightboxTitle.innerHTML = ''; 
+  let h2 = document.createElement('h2');
+  h2.textContent = mediaItems[currentIndex].title;
+  lightboxTitle.appendChild(h2); 
+}
+
 
 
   closeCarousel.addEventListener('click', () => {
@@ -77,11 +83,17 @@ function displayCarousel(pictureContent, videoContent, dataContent, image, video
 function closeCarouselFunction() {
   const modal = document.getElementById("lightbox_container");
   modal.style.display = "none";
-  const elementsToHide = document.querySelectorAll('#main, #header');
-  elementsToHide.forEach((element) => {
-      element.setAttribute('aria-hidden', 'false');
-      element.style.display = 'block';
-  });
+  const main = document.querySelector('main');
+  const elementsInsideMain = main.querySelectorAll('*');
+  const header = document.querySelector('header');
+const elementsInsideHeader = header.querySelectorAll('*');
+  elementsInsideHeader.forEach((element) => {
+    element.setAttribute('tabindex', '0');
+    element.setAttribute('aria-hidden', 'false')
+});elementsInsideMain.forEach((element) => {
+  element.setAttribute('tabindex', '0');
+  element.setAttribute('aria-hidden', 'false')
+});
 }
 
   function updateCarousel() {
@@ -113,6 +125,3 @@ function closeCarouselFunction() {
       lightboxMedia.appendChild(videoElement);
     }
   }
-
-
-

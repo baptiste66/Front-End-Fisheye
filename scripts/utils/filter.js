@@ -65,13 +65,14 @@ function sortByTitle() {
     });
 
     mediaContainer.forEach(container => photographMain.appendChild(container));
+    updateMediaItems(mediaContainer);
 }
 
 
 
 
 function sortByDate() {
-    console.log('date'); 
+  
 
     const photographMain = document.querySelector(".photographe-main");
     const mediaContainer = Array.from(photographMain.querySelectorAll(".media-container"));
@@ -86,11 +87,9 @@ function sortByDate() {
 
     mediaContainer.forEach(container => {
         photographMain.appendChild(container);
-
-       
         const dateAttributeValue = container.getAttribute('data-media-date');
-        console.log('data-media-date:', dateAttributeValue);
     });
+    updateMediaItems(mediaContainer);
 }
 
 
@@ -110,6 +109,7 @@ function sortByLikes() {
     });
 
     mediaContainer.forEach(container => photographMain.appendChild(container));
+    updateMediaItems(mediaContainer);
 }
 
 
@@ -118,15 +118,43 @@ optionButtons.forEach(function(optionButton) {
         handleOptionSelection(optionButton);
         updateOptions();
         closeDropdown();
-
-        
         const selectedOption = currentFilterElement.textContent;
         if (selectedOption === 'Date') {
+            
            sortByDate();
         } else if (selectedOption === 'Popularité') {
+            
             sortByLikes();
         } else if (selectedOption === 'Titre') {
+            
             sortByTitle();
         }
     });
 });
+
+function updateMediaItems(mediaContainer) {
+    mediaItems.length = 0;
+
+    mediaContainer.forEach((container, index) => {
+        const mediaElement = container.querySelector('.photographe-main_picture_description h2');
+        const mediaTitle = mediaElement ? mediaElement.textContent : '';
+        
+        const imageElement = container.querySelector('.photographe-main_picture ');
+        const videoElement = container.querySelector('.photographe-main_video');
+        
+        const isImage = !!imageElement;
+        const isVideo = !!videoElement;
+
+        mediaItems.push({
+            type: isImage ? 'image' : (isVideo ? 'video' : 'unknown'),
+            src: isImage ? imageElement.getAttribute('src') : (isVideo ? videoElement.getAttribute('src') : ''),
+            title: mediaTitle,
+            index: index,
+        });
+    });
+
+    
+    mediaItems.sort((a, b) => a.index - b.index);
+
+    console.log(mediaItems);
+}

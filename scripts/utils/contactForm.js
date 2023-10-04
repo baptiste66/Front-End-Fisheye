@@ -38,7 +38,21 @@ elementsInsideHeader.forEach((element) => {
 
 function closeModal() {
     modal.style.display = "none";
-}
+    const main = document.querySelector('main');
+    const elementsInsideMain = main.querySelectorAll('*');
+    const header = document.querySelector('header');
+  const elementsInsideHeader = header.querySelectorAll('*');
+  
+  elementsInsideHeader.forEach((element) => {
+    element.setAttribute('tabindex', '0');
+    element.setAttribute('aria-hidden', 'false')
+  });
+    elementsInsideMain.forEach((element) => {
+      element.setAttribute('tabindex', '0');
+      element.setAttribute('aria-hidden', 'false')
+    });
+  };
+
 
 const firstNameInput = document.getElementById('first-name');
 const firstNameError = document.getElementById('first-name-error');

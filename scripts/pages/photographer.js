@@ -21,13 +21,13 @@ async function displayData(photographer) {
     photographHeader.appendChild(userCardDOM);
 }
 
-const mediaItems = [];
-console.log(mediaItems)
-// for main content 
+
+mediaItems=[]
 async function displaycontentVisualAndDescription(medias, photographName) {
     const photographMain = document.querySelector(".photographe-main");
     
-    for (const media of medias) {
+    for (let i = 0; i < medias.length; i++) {
+        const media = medias[i];
         const photographerWorkVisual = mediaTemplateVisual(media, photographName);
         const photographerWorkDescription = mediaTemplateDescription(media, photographName);
 
@@ -39,15 +39,17 @@ async function displaycontentVisualAndDescription(medias, photographName) {
 
         mediaContainer.appendChild(visualDOM);
         mediaContainer.appendChild(descriptionDOM);
+
+        
         mediaItems.push({
             type: media.video ? 'video' : 'image',
             src: media.video ? `../Sample Photos/${photographName}/${media.video}` :
              `../Sample Photos/${photographName}/${media.image}`,
-            title: media.title 
+            title: media.title,
+            index: i 
         });
 
         photographMain.appendChild(mediaContainer);
-        
     }
 }
 
@@ -69,12 +71,9 @@ async function init() {
 
     if (mediasForPhotographer.length > 0) {
         displaycontentVisualAndDescription(mediasForPhotographer, photographName);
-        
+       
     } else {
         console.error(`Aucun contenu visuel pour ce photographe ${id}`);
     } sortByLikes()
 }
-init()
-
-
-
+init() 
