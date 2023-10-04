@@ -191,7 +191,8 @@ class MediaFactory {
                 element.setAttribute('tabindex', '-1');
                 element.setAttribute('aria-hidden', 'true');
             });
-            displayCarousel(mediaContent, mediaInstance, dataContent, image, video, title);
+            const clickedIndex = mediaItems.findIndex((media) => media.src === mediaContent);
+            displayCarousel(mediaContent, mediaInstance, dataContent, image, video, title,clickedIndex);
            
         });
 

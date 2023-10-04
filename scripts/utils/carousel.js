@@ -6,8 +6,8 @@ const lightboxTitle = document.querySelector('.lightbox_title')
 
 
 
-function displayCarousel(clickedMedia, mediaInstance, dataContent, image, video, title) {
-  currentIndex=[]
+function displayCarousel(clickedMedia, mediaInstance, dataContent, image, video, title,clickedIndex) {
+  currentIndex = clickedIndex;
   const lightboxMedia = document.querySelector('.lightbox_media');
   lightboxMedia.innerHTML = '';
   lightboxTitle.innerHTML = ''; 
