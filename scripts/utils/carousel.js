@@ -90,11 +90,11 @@ function closeCarouselFunction() {
   const header = document.querySelector('header');
 const elementsInsideHeader = header.querySelectorAll('*');
   elementsInsideHeader.forEach((element) => {
-    element.setAttribute('tabindex', '0');
-    element.setAttribute('aria-hidden', 'false')
+    element.removeAttribute('tabindex');
+    element.removeAttribute('aria-hidden');
 });elementsInsideMain.forEach((element) => {
-  element.setAttribute('tabindex', '0');
-  element.setAttribute('aria-hidden', 'false')
+  element.removeAttribute('tabindex');
+    element.removeAttribute('aria-hidden');
 });
 }
 

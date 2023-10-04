@@ -158,7 +158,9 @@ form textarea{
     margin-bottom: 0px; 
     margin-right: 20px;
   }
-
+.media-container a{
+  padding-top: 90%;
+}
 
 .photographe-main img{
     width: 370px;
