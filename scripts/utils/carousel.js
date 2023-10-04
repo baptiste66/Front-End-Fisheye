@@ -58,16 +58,7 @@ function displayCarousel(pictureContent, videoContent, dataContent, image, video
     
 }
 
-function updateTitle(title) {
-  lightboxTitle.innerHTML = ''; 
-  let h2 = document.createElement('h2');
-  h2.textContent = title;
-  lightboxTitle.appendChild(h2); 
-}
 
-
-
-if (closeCarousel) {
   closeCarousel.addEventListener('click', () => {
     closeCarouselFunction();
   });
@@ -77,14 +68,19 @@ if (closeCarousel) {
       closeCarouselFunction();
     }
   });
-}
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeCarouselFunction();
+    }
+  });
 
 function closeCarouselFunction() {
   const modal = document.getElementById("lightbox_container");
   modal.style.display = "none";
-  const allElements = document.querySelectorAll('#lightbox_container');
-  allElements.forEach((element) => {
-    element.setAttribute('aria-hidden', 'false');
+  const elementsToHide = document.querySelectorAll('#main, #header');
+  elementsToHide.forEach((element) => {
+      element.setAttribute('aria-hidden', 'false');
+      element.style.display = 'block';
   });
 }
 

@@ -157,11 +157,12 @@ function mediaTemplateVisual(dataContent, photographName) {
         linkElement.setAttribute('data-media', dataContent.id);
         linkElement.addEventListener('click', (event) => {
             event.preventDefault(); 
-            displayCarousel(pictureContent, videoContent, dataContent, image, video, title)
-            const allElements = document.querySelectorAll('*:not(#lightbox_container)');
-            allElements.forEach((element) => {
+            const elementsToHide = document.querySelectorAll('#main, #header');
+            elementsToHide.forEach((element) => {
                 element.setAttribute('aria-hidden', 'true');
+                element.style.display = 'none';
             });
+            displayCarousel(pictureContent, videoContent, dataContent, image, video, title)
           });
 
         if (video) {

@@ -11,7 +11,7 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header>
+    <header id="header">
       <a href="index.html" alt="Fisheye Home page">
       <img src="assets/images/logo.png" class="logo" />
     </a>
@@ -31,13 +31,13 @@
             </button>
             <ul class="dropdown_content" aria-hidden="true">
               <li role="option">
-                  <button type="button" tabindex="-1" aria-label="Sort by popularity" data-sort="Popularité">Popularité</button>
+                  <button type="button" tabindex="0" aria-label="Sort by popularity" data-sort="Popularité">Popularité</button>
               </li>
               <li role="option">
-                    <button type="button" tabindex="-1" aria-label="Sort by date" data-sort="Date">Date</button>
+                    <button type="button" tabindex="0" aria-label="Sort by date" data-sort="Date">Date</button>
                 </li>
                 <li role="option">
-                    <button type="button" tabindex="-1" aria-label="Sort by title" data-sort="Titre">Titre</button>
+                    <button type="button" tabindex="0" aria-label="Sort by title" data-sort="Titre">Titre</button>
                 </li>
             </ul>
         </div>
@@ -87,6 +87,7 @@
           <figure class="lightbox_media" role="media" aria-label="Current Media"></figure>
           <div class="lightbox_title"></div>
       </div> 
+    </div>
     <script src="scripts/pages/photographer.js" ></script>
     <script src="scripts/templates/photographer-media.js" ></script>
     <script src="scripts/utils/contactForm.js" ></script>

@@ -25,10 +25,13 @@ function updateOptions() {
         const optionLabel = optionButton.textContent;
         if (currentFilter === 'Popularité') {
             optionButton.style.display = optionLabel === 'Titre' || optionLabel === 'Date' ? 'block' : 'none';
+           
         } else if (currentFilter === 'Titre') {
             optionButton.style.display = optionLabel === 'Popularité' || optionLabel === 'Date' ? 'block' : 'none';
+            
         } else if (currentFilter === 'Date') {
             optionButton.style.display = optionLabel === 'Popularité' || optionLabel === 'Titre' ? 'block' : 'none';
+           
         }
     });
 }
@@ -41,11 +44,13 @@ window.addEventListener('load', function() {
 
 button.addEventListener('click', function() {
     const isExpanded = button.getAttribute('aria-expanded') === 'true';
-
     button.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
     icon.classList.toggle('rotate', !isExpanded);
     dropdown.style.display = isExpanded ? 'none' : 'block';
-});
+    dropdown.setAttribute('aria-hidden', 'false')
+})
+;
+
 
 function sortByTitle() {
     const photographMain = document.querySelector(".photographe-main");

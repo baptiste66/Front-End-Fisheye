@@ -4,17 +4,21 @@ function displayModal() {
 }
 const closeContact = document.getElementsByClassName('closeContact')[0];
 
-if (closeContact) {
+
   closeContact.addEventListener('click', () => {
     closeModal();
   });
 
   closeContact.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter'|| event.key === 'Escape') {
       closeModal();
     }
   });
-} 
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  });
 
 
 function closeModal() {
